@@ -20,7 +20,8 @@ public class WaypointPatrol : MonoBehaviour
         // navMeshAgent変数にNavMeshAgentコンポーネントを入れる
         navMeshAgent = GetComponent<NavMeshAgent>();
         // 最初の目的地を入れる
-        navMeshAgent.SetDestination(waypoints[0].position);
+        int value = Random.Range(0, waypoints.Length + 1);
+        navMeshAgent.SetDestination(waypoints[value].position);
     }
 
     // Update is called once per frame
