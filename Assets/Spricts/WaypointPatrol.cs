@@ -3,16 +3,17 @@ using UnityEngine.AI;
 
 // NavMeshAgentコンポーネントがアタッチされていない場合アタッチ
 [RequireComponent(typeof(NavMeshAgent))]
-public class WaypointPatrol : MonoBehaviour
+public class WayPointPatrol : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("巡回する地点の配列")]
-    private Transform[] waypoints;
+    public Transform[] waypoints;
 
     // NavMeshAgentコンポーネントを入れる変数
     private NavMeshAgent navMeshAgent;
     // 現在の目的地
-    private int currentWaypointIndex;
+    [System.NonSerialized]
+    public int currentWaypointIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,8 @@ public class WaypointPatrol : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         // 最初の目的地を入れる
         int value = Random.Range(0, waypoints.Length + 1);
-        navMeshAgent.SetDestination(waypoints[value].position);
+        currentWaypointIndex = (currentWaypointIndex + value) % waypoints.Length;
+        navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
     }
 
     // Update is called once per frame
@@ -31,7 +33,7 @@ public class WaypointPatrol : MonoBehaviour
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
             int value = Random.Range(0, waypoints.Length + 1);
-            // 目的地の番号を１更新（右辺を剰余演算子にすることで目的地をループさせれる）
+            // 目的地の番号を更新（右辺を剰余演算子にすることで目的地をループさせれる）
             currentWaypointIndex = (currentWaypointIndex + value) % waypoints.Length;
             // 目的地を次の場所に設定
             navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);

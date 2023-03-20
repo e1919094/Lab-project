@@ -1,0 +1,29 @@
+{
+    "AutoMoveAgent": {
+        "checkpoints": [
+            {
+                "steps": 3792,
+                "file_path": "results\\1\\AutoMoveAgent\\AutoMoveAgent-3792.onnx",
+                "reward": null,
+                "creation_time": 1659603713.2473476,
+                "auxillary_file_paths": [
+                    "results\\1\\AutoMoveAgent\\AutoMoveAgent-3792.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3792,
+            "file_path": "results\\1\\AutoMoveAgent.onnx",
+            "reward": null,
+            "creation_time": 1659603713.2473476,
+            "auxillary_file_paths": [
+                "results\\1\\AutoMoveAgent\\AutoMoveAgent-3792.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.7.0+cu110"
+    }
+}
